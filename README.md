@@ -4,6 +4,8 @@ Este projeto implementa um agente inteligente para extrair dados de imagens de N
 
 A solução utiliza a API multimodal do Google Gemini para realizar o Reconhecimento Óptico de Caracteres (OCR) e a extração de entidades em uma única etapa, eliminando a necessidade de ferramentas de OCR tradicionais como o Tesseract.
 
+A apresentação deste trabalho em vídeo também pode ser visualizada através do link: https://youtu.be/avW84Gmdxb4
+
 Estrutura do Projeto
 extractor.py: Contém a classe GeminiExtractor, responsável por enviar a imagem da NF-e para a API do Gemini e receber os dados em formato JSON.
 
@@ -55,3 +57,9 @@ pytest
 
 Com todos esses arquivos, você tem uma base sólida e bem estruturada para a Fase 1 do projeto, seguindo as melhores práticas de desenvolvimento e testes.# projeto_final
 # projeto_final
+
+### Acesso ao vídeo
+
+A apresentação em vídeo também pode ser visualizada através do link:
+
+https://youtu.be/avW84Gmdxb4
