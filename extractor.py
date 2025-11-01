@@ -111,7 +111,7 @@ Use a seguinte estrutura para o JSON de saída:
 
 class GeminiExtractor:
     def __init__(self):
-        self.model = genai.GenerativeModel('models/gemini-2.5-flash-image')
+        self.model = genai.GenerativeModel('models/gemini-2.5-flash-lite')
         self.max_retries = 3
         self.base_delay = 15  # segundos
 
