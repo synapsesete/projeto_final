@@ -3,6 +3,7 @@ import json
 import time
 import google.generativeai as genai
 from PIL import Image
+from pdf2image import convert_from_path
 
 # --- Debug: List available models ---
 print("=== Available Models ===")
@@ -115,17 +116,20 @@ class GeminiExtractor:
         self.max_retries = 3
         self.base_delay = 15  # segundos
 
-    def extract_data_from_image(self, image_path: str) -> dict:
+    def extract_data_from_image(self, file_path: str) -> dict:
         """
         Carrega uma imagem, envia para a API Gemini com um prompt estruturado
         e retorna os dados extraídos como um dicionário Python.
         """
-        print(f"Iniciando extração de dados da imagem: {image_path}")
+        print(f"Iniciando extração de dados do arquivo: {file_path}")
 
         try:
-            img = Image.open(image_path)
+            if (self.__is_pdf_by_extension(file_path)):
+              img = convert_from_path(file_path)[0]
+            else:
+              img = Image.open(file_path)
         except FileNotFoundError:
-            print(f"Erro: Arquivo de imagem não encontrado em '{image_path}'")
+            print(f"Erro: Arquivo não encontrado em '{file_path}'")
             raise
 
         for attempt in range(self.max_retries):
@@ -166,6 +170,10 @@ class GeminiExtractor:
             print(response.text)
             print("-----------------------------")
             raise Exception("A resposta da API não é um JSON válido.")
+        
+
+    def __is_pdf_by_extension(self,file_path):
+      return os.path.splitext(file_path)[1].lower() == '.pdf'  
 
 if __name__ == "__main__":
     print("Este módulo deve ser importado, não executado diretamente.")
